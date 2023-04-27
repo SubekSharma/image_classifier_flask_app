@@ -6,7 +6,7 @@ from io import BytesIO
 
 model = tf.keras.models.load_model('templates\model.h5')
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 
 @app.route('/')
 def index():
