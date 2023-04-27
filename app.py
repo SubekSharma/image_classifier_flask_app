@@ -4,9 +4,9 @@ import tensorflow as tf
 from io import BytesIO
 
 
-model = tf.keras.models.load_model('templates\model.h5')
+model = tf.keras.models.load_model('cnn_model.h5')
 
-app = Flask(__name__, template_folder='templates')
+app = Flask(__name__)
 
 @app.route('/')
 def index():
