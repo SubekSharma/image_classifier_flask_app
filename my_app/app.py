@@ -4,13 +4,13 @@ import tensorflow as tf
 from io import BytesIO
 
 
-model = tf.keras.models.load_model('cnn_model.h5')
+model = tf.keras.models.load_model('model\cnn_model.h5')
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder = 'templates')
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('templates\index.html')
 
 
 @app.route('/classify', methods=['POST'])
@@ -45,5 +45,5 @@ def classify_image():
 
 
 if __name__ == '__main__':
-    app.run(port=80)
+    app.run()
 
