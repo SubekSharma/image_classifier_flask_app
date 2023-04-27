@@ -1,1 +1,1 @@
-# image_classifier_flask_app
+This is a simple Flask App that can be used to check whether or not an image contains adult content. This app uses a trained model on CNN to check the contente of image. The model gives about 94% accuracy and is trained on my self made dataset of 5000 images. 
