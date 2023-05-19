@@ -18,6 +18,7 @@ def index():
 def classify_image():
     # Get the file from the request
     file = request.files['file']
+    print(file)
 
     # Read the file
     img = tf.keras.preprocessing.image.load_img(
@@ -26,23 +27,27 @@ def classify_image():
     # Convert the image to a numpy array
     img_array = tf.keras.preprocessing.image.img_to_array(img)
 
+    # Resize the image array to the expected shape
+    img_array = tf.image.resize(img_array, (240, 320))
+
     # Normalize the image
     img_array /= 255.0
 
-    # Add a batch dimension
+    # Add an additional dimension to match the expected input shape
     img_array = np.expand_dims(img_array, axis=0)
 
     # Predict the class
     prediction = model.predict(img_array)
 
     # Get the predicted class label
-    if prediction[0]<0.3 :
-         label = ' 18+ CONTENT.'
+    if prediction[0] < 0.3:
+        label = '18+ CONTENT.'
     else:
-         label = 'SAFE TO USE.'
+        label = 'SAFE TO USE.'
 
     # Render the index template with the file upload form and classification result
     return render_template('index.html', label=label)
+
 
 
 if __name__ == '__main__':
